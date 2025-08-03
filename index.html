@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Love! 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #ffc2d1, #e5c1f0);
+      color: #333;
+      overflow-x: hidden;
+    }
+    .center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 1em;
+    }
+    h1, h2, p {
+      font-family: 'Dancing Script', cursive;
+    }
+    h1 {
+      font-size: 3em;
+      color: #ff4f9a;
+      margin-bottom: 0.5em;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #ff4f9a;
+      animation: typing 4s steps(40, end), blink .75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #ff4f9a; }
+    }
+    .btn {
+      padding: 0.7em 1.5em;
+      margin: 1em;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      color: white;
+    }
+    .yes-btn {
+      background: #f77eb9;
+    }
+    .yes-btn:hover {
+      background: #ff4f9a;
+    }
+    .no-btn {
+      background: #bbb;
+    }
+    .no-btn:hover {
+      background: #999;
+    }
+    #crying-img {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .hidden { display: none; }
+    .game, .message-container { padding: 2em; text-align: center; }
+    .input-style {
+      padding: 0.5em;
+      font-size: 1em;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin: 0.5em;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background: #fff0f5;
+      border: 2px dashed #ff69b4;
+      display: inline-block;
+      margin: 1em;
+      line-height: 100px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 15px;
+    }
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      animation: float 6s infinite;
+      transform: rotate(45deg);
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="heart-container"></div>
+
+  <div class="center" id="intro">
+    <h1>Would you like to open it?</h1>
+    <div>
+      <button class="btn yes-btn" onclick="startExperience()">Yes baby 💘</button>
+      <button class="btn no-btn" onclick="showSadScreen()">No 😢</button>
+    </div>
+  </div>
+
+  <div class="center hidden" id="sad">
+    <img src="crying-chance.jpg" id="crying-img" alt="crying" />
+    <p style="font-size:2em; color:#cc3366; margin-top:1em;">NOOO, GIVE ME ANOTHER CHANCE 😭</p>
+  </div>
+
+  <div class="game hidden" id="guess-game">
+    <h2>Guess the word! 💌</h2>
+    <p>Hint: Something you call me 😚</p>
+    <input class="input-style" id="guessInput" placeholder="Type your guess here...">
+    <button class="btn yes-btn" onclick="checkGuess()">Submit</button>
+    <p id="guessResult"></p>
+  </div>
+
+  <div class="game hidden" id="gift-game">
+    <h2>Find your gift 🎁</h2>
+    <div>
+      <div class="box" onclick="checkGift(true)">🎁</div>
+      <div class="box" onclick="checkGift(false)">🎁</div>
+    </div>
+    <p id="giftResult"></p>
+  </div>
+
+  <div class="message-container hidden" id="final-message">
+    <h2 style="font-size: 2em;">HAPPY BIRTHDAY, MY LOVE!! 🎉</h2>
+    <p style="font-size: 1.2em; max-width: 600px; margin: 0 auto;">
+      Today’s your special day, and I just want to remind you how grateful I am to have you in my life. Out of everyone in the world, I somehow ended up with the most amazing person to call mine — and that’s something I’ll never take for granted.<br><br>
+      Thank you for always being there for me — for your patience, your hugs, your late-night chika, and even your corny jokes that somehow never fail to make me laugh. You have no idea how much light, comfort, and peace you bring into my life just by being you.<br><br>
+      I’ll always be here for you — through your highs, your lows, and everything in between. I’m so excited for all the adventures that still lie ahead of us, and I promise to keep cheering you on in everything you do.<br><br>
+      Happy birthday, babe. I love you more than words can ever say. 💖
+    </p>
+    <br>
+    <img src="birthday-cake.png" style="max-width:300px; border-radius:20px; box-shadow:0 0 10px rgba(0,0,0,0.2);">
+  </div>
+
+  <script>
+    const hearts = document.getElementById("heart-container");
+    function showSadScreen() {
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("sad").classList.remove("hidden");
+    }
+    function startExperience() {
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("guess-game").classList.remove("hidden");
+    }
+    function checkGuess() {
+      const input = document.getElementById("guessInput").value.trim().toLowerCase();
+      const result = document.getElementById("guessResult");
+      if (input === "baby" || input === "babe") {
+        result.textContent = "Correct! 🎉";
+        setTimeout(() => {
+          document.getElementById("guess-game").classList.add("hidden");
+          document.getElementById("gift-game").classList.remove("hidden");
+        }, 1000);
+      } else {
+        result.textContent = "Hmm try again 😘";
+      }
+    }
+    function checkGift(isCorrect) {
+      const result = document.getElementById("giftResult");
+      if (isCorrect) {
+        result.textContent = "Yay! You found it! 🎁💖";
+        setTimeout(() => {
+          document.getElementById("gift-game").classList.add("hidden");
+          document.getElementById("final-message").classList.remove("hidden");
+        }, 1500);
+      } else {
+        result.textContent = "Not here! Try again 🫣";
+      }
+    }
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
+      hearts.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
